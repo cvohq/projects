@@ -158,4 +158,8 @@
 	echo 'The largest palindrome made from the product of two 3-digit numbers:  ';
 	findpalindromic(3);
 
+	
+
+
+
 ?>
