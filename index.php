@@ -46,15 +46,15 @@
         //get second value
         $tag2 = $requestPath[2];
         
-        //get values after '?' and set to array $tag3
-        $tag3 = explode('?', $requestPath[3]);
-        
-        $calculator = $tag3[0];  //=add/subtract/Multiply/divide
-        parse_str($tag3[1], $number);
-        
         $controller = new Week3Controller();
         if($tag2 === 'math')
         {
+            //get values after '?' and set to array $tag3
+            $tag3 = explode('?', $requestPath[3]);
+
+            $calculator = $tag3[0];  //=add/subtract/Multiply/divide
+            parse_str($tag3[1], $number);
+        
             if($calculator === 'add')
             {
                 $controller->add($number);
@@ -74,6 +74,13 @@
             {
                 $controller->divide($number);
             }
+        }
+        
+        if($tag2 === 'evenlydivisible')
+        {
+            $tag3 = array_map('intval', explode('/', $requestPath[3]));
+            
+            $controller ->evenlydivisible($tag3[0]);
         }
         
         $model = $controller->getModel();
