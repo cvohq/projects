@@ -55,6 +55,8 @@ class Week3Controller extends Controller {
         $this->view = new View($this->template);
     }
     
+    
+    //Homework Math 1
     private function prime($number)
     {
         //0,1 are not prime number
@@ -79,11 +81,65 @@ class Week3Controller extends Controller {
                 $result *= $i;
             }
         }
-        
-        
+         
         $this->template[] = '/Templates/Week3.Math.template.php';
         $this->model->addvalue('evenlydivisible');
         $this->model->addvalue($number);
+        $this->model->addvalue($result);
+        $this->view = new View($this->template);
+    }
+    
+    //Homework difference sum squares
+    
+    public function difference_sum_squares($number) {
+        $result = $number * ($number * $number -1) * (3 * $number + 2) / 12; //Dont ask why !!!!
+        
+        $this->template[] = '/Templates/Week3.Math.template.php';
+        $this->model->addvalue('difference_sum_squares');
+        $this->model->addvalue($number);
+        $this->model->addvalue($result);
+        $this->view = new View($this->template);
+    }
+    
+    //homework read file and file greate product
+    
+    private function readinput()
+    {
+        $a = [];
+        $myfile = fopen("./input.txt", "r") or die("Unable to open file!");
+        while(!feof($myfile)) {
+            $a[] = fgets($myfile) . "<br>";
+        }
+        fclose($myfile);
+        return $a;
+    }
+    
+    public function greatestproduct($number) {
+        $a = self::readinput();
+        $collumn = count($a);
+        $row = strlen($a[0]);
+        $greatesnumber = 0;
+        for($i=0; $i<$collumn; $i++)
+        {
+            for($j = 0; $j<$row-$number; $j++)
+            {
+                $tmp = (int)substr($a[$i],$j,$number);
+                if($greatesnumber < $tmp)
+                    $greatesnumber = $tmp;
+            }
+        }
+        
+        $tmp = $greatesnumber;
+        $result = 1;
+        for($i = 0;$i < $number; $i++)
+        {
+            $result *= ($tmp%10);
+            $tmp = intval($tmp / 10);
+        }
+   
+        $this->template[] = '/Templates/Week3.Math.template.php';
+        $this->model->addvalue('greatesnumber');
+        $this->model->addvalue($greatesnumber);
         $this->model->addvalue($result);
         $this->view = new View($this->template);
     }

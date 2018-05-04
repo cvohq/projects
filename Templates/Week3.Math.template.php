@@ -9,6 +9,8 @@
         echo 'Divide = ' .$data[2];
     if($data[1] === 'evenlydivisible')
         echo 'The smallest positive number that is evenly divisible by all of the numbers from 1 to '. $data[2] . ' : ' . $data[3];
-    
-
+    if($data[1] === 'difference_sum_squares')
+        echo '(1+2+3+......+' .$data[2].')^2  -  (1^2 + 2^2 + .....+ ' .$data[2] . '^2) = ' .$data[3]; 
+    if($data[1] === 'greatesnumber')
+        echo 'The adjacent digits: ' . $data[2] . ' have the greatest product are: ' .$data[3];
 ?>

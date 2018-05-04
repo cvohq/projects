@@ -80,7 +80,20 @@
         {
             $tag3 = array_map('intval', explode('/', $requestPath[3]));
             
-            $controller ->evenlydivisible($tag3[0]);
+            $controller->evenlydivisible($tag3[0]);
+        }
+        
+        if($tag2 === 'differencesumsquares')
+        {
+            $tag3 = array_map('intval', explode('/', $requestPath[3]));
+            
+            $controller->difference_sum_squares($tag3[0]);
+        }
+        
+        if($tag2 === 'greatestproduct')
+        {
+            $tag3 = array_map('intval', explode('/', $requestPath[3]));
+            $controller->greatestproduct($tag3[0]);
         }
         
         $model = $controller->getModel();
