@@ -1,22 +1,6 @@
 <?php
-    //need load class Model, View, Control firs if not ->error
-    require_once './Models/Model.php';
-    require_once './Views/View.php';
-    require_once './Controllers/Controller.php';
-    
-    //this function will loadd all file php in folder
-    function require_all_file($dir)
-    {
-        $files = glob($dir . '/*.php');
 
-        foreach ($files as $file) {
-            require_once $file;   
-        }
-    }
-    
-    require_all_file('./Controllers');
-    require_all_file('./Models');
-    require_all_file('./Views');
+    require __DIR__ . '/vendor/autoload.php';
     
     // get values after '/'  and set to array $requestPath
     $requestPath = explode('/', $_SERVER['REQUEST_URI']);
@@ -40,13 +24,12 @@
         
         echo $view->render($data);
     }
-
-    if($tag1 === 'week3') 
+    elseif($tag1 === 'week3') 
     {
         //get second value
         $tag2 = $requestPath[2];
         
-        $controller = new Week3Controller();
+        $controller = new Controllers\Week3Controller();
         if($tag2 === 'math')
         {
             //get values after '?' and set to array $tag3
@@ -96,6 +79,30 @@
             $controller->greatestproduct($tag3[0]);
         }
         
+        
+        $model = $controller->getModel();
+        
+        $data = $model->getData();
+        
+        $view = $controller->getView();
+        
+        echo $view->render($data);  
+    }
+    elseif ($tag1 === 'week4') 
+    {
+        $tag2 = $requestPath[2];
+        $controller = new Controllers\Week4Controller();
+        
+        if($tag2 === 'PythagoreanTriple')
+        {
+            $controller -> PythagoreanTriple();
+        }
+        elseif($tag2 === 'CollatzProblem')
+        {
+            
+            $controller->LongestCountCollatzProblem();
+        }
+        
         $model = $controller->getModel();
         
         $data = $model->getData();
@@ -103,7 +110,10 @@
         $view = $controller->getView();
         
         echo $view->render($data);
-        
+    }
+    else
+    {
+        echo 'Page not found';
     }
     
 ?>

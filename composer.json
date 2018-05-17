@@ -1,0 +1,26 @@
+{
+    "name":"CV",
+    "description": "",
+    "version":"0.0.0.0",
+    "authors":[
+        {
+            "name":"Cuong",
+            "email":"cv@cv.com"
+        }
+    ],
+    "require":{
+        "monolog/monolog": "^1.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/Controllers",
+            "Models\\": "src/Models",
+            "Views\\": "src/Views"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+    
+}
+
