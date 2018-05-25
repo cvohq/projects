@@ -11,4 +11,5 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Models\\' => array($baseDir . '/src/Models'),
     'Controllers\\' => array($baseDir . '/src/Controllers'),
+    'Classes\\' => array($baseDir . '/src/Classes'),
 );

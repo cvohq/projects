@@ -6,9 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Classes\\Config' => $baseDir . '/src/Classes/Config.php',
+    'Classes\\Mysql' => $baseDir . '/src/Classes/Mysql.php',
     'Controllers\\Controller' => $baseDir . '/src/Controllers/Controller.php',
     'Controllers\\Week3Controller' => $baseDir . '/src/Controllers/Week3Controller.php',
     'Controllers\\Week4Controller' => $baseDir . '/src/Controllers/Week4Controller.php',
+    'Controllers\\Week5Controller' => $baseDir . '/src/Controllers/Week5Controller.php',
     'Models\\Model' => $baseDir . '/src/Models/Model.php',
     'Models\\Week3Model' => $baseDir . '/src/Models/Week3Model.php',
     'Models\\Week4Model' => $baseDir . '/src/Models/Week4Model.php',

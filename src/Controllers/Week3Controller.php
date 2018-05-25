@@ -4,9 +4,46 @@ namespace Controllers;
 
 class Week3Controller extends Controller {
  
-    public function __construct() {
-       
+    public function __construct($requestPath = []) {
         $this->model = new \Models\Week3Model();
+        
+        if($requestPath[2] === 'math')
+        {
+            $tag = explode('?', $requestPath[3]);
+            $calculator = $tag[0];
+            parse_str($tag[1], $number);
+            
+            if($calculator === 'add')
+            {
+                $this->add($number);
+            }
+            elseif ($calculator === 'subtract') {
+                $this->subtract($number);
+            }
+            elseif ($calculator === 'multiply') {
+                $this->multiply($number);
+            }
+            elseif ($calculator === 'divide') {
+                $this->divide($number);
+            }
+        }
+        elseif ($requestPath[2] === 'greatestproduct') {
+            $this->greatestproduct($requestPath[3]);
+        }
+        elseif ($requestPath[2] === 'differencesumsquares') {
+            $this->difference_sum_squares($requestPath[3]);
+        }
+        elseif ($requestPath[2] === 'evenlydivisible') {
+            $this->evenlydivisible($requestPath[3]);
+        }
+        else
+        {
+            //echo 'Page not found';
+            $this->model->addData('Page not found');
+            
+        }
+        
+        
         
         $this->template = [
             '/Templates/Nav.template.php',
@@ -16,9 +53,9 @@ class Week3Controller extends Controller {
         $this->view = new \Views\View($this->template);
     }
     
-    public function add($number) {
-        $this->model->addvalue('add');
-        $this->model->addvalue(array_sum($number));     
+    public function add($number = []) {
+        $this->model->addData('add');
+        $this->model->addData(array_sum($number));     
     }
     
     public function subtract($number) {
@@ -27,8 +64,8 @@ class Week3Controller extends Controller {
             $subtract -= $x;
         }
         
-        $this->model->addvalue('subtract');
-        $this->model->addvalue($subtract);
+        $this->model->addData('subtract');
+        $this->model->addData($subtract);
     }
     
     public function multiply($number) {
@@ -37,8 +74,8 @@ class Week3Controller extends Controller {
             $multiply *= $value;
         }
         
-        $this->model->addvalue('multiply');
-        $this->model->addvalue($multiply);
+        $this->model->addData('multiply');
+        $this->model->addData($multiply);
     }
     
     public function divide($number) {
@@ -47,8 +84,8 @@ class Week3Controller extends Controller {
             $divide /= $value;
         }
         
-        $this->model->addvalue('divide');
-        $this->model->addvalue($divide);
+        $this->model->addData('divide');
+        $this->model->addData($divide);
     }
     
     
@@ -78,9 +115,9 @@ class Week3Controller extends Controller {
             }
         }
          
-        $this->model->addvalue('evenlydivisible');
-        $this->model->addvalue($number);
-        $this->model->addvalue($result);
+        $this->model->addData('evenlydivisible');
+        $this->model->addData($number);
+        $this->model->addData($result);
     }
     
     //Homework difference sum squares
@@ -88,9 +125,9 @@ class Week3Controller extends Controller {
     public function difference_sum_squares($number) {
         $result = $number * ($number * $number -1) * (3 * $number + 2) / 12; //Dont ask why !!!!
         
-        $this->model->addvalue('difference_sum_squares');
-        $this->model->addvalue($number);
-        $this->model->addvalue($result);
+        $this->model->addData('difference_sum_squares');
+        $this->model->addData($number);
+        $this->model->addData($result);
     }
     
     //homework read file and file greate product
@@ -129,8 +166,8 @@ class Week3Controller extends Controller {
             $tmp = intval($tmp / 10);
         }
    
-        $this->model->addvalue('greatesnumber');
-        $this->model->addvalue($greatesnumber);
-        $this->model->addvalue($result);
+        $this->model->addData('greatestproduct');
+        $this->model->addData($greatesnumber);
+        $this->model->addData($result);
     }
 }

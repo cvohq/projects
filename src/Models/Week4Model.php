@@ -18,7 +18,4 @@ class Week4Model extends Model{
         $this->addData('Welcome to Week 4');
     }
     
-    public function addvalue($data){
-        $this->addData($data);
-    }
 }

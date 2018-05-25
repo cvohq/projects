@@ -13,6 +13,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Classes\\": "src/Classes",
             "Controllers\\": "src/Controllers",
             "Models\\": "src/Models",
             "Views\\": "src/Views"
