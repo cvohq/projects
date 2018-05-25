@@ -1,0 +1,15 @@
+{
+    "db": {
+        "mysql" : {
+            "dev": {
+                "host": "localhost",
+                "user": "root",
+                "password": "root",
+                "dbname": "cv"
+            }
+        },
+        
+        "mongodb": {
+        }
+    }
+}
