@@ -1,6 +1,8 @@
 <?php
 namespace Classes;
 
+use \PDO as PDO;
+
 class Mysql {
     private static $db_dev;
     
@@ -23,7 +25,7 @@ class Mysql {
         static::get_config();
         
         try {
-            $pdo = new \PDO("mysql:host=" . static::$db_dev['host'] . ";dbname=" . static::$db_dev['dbname'],static::$db_dev['user'], static::$db_dev['password']);
+            $pdo = new PDO("mysql:host=" . static::$db_dev['host'] . ";dbname=" . static::$db_dev['dbname'],static::$db_dev['user'], static::$db_dev['password']);
             
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             

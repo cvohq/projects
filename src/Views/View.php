@@ -11,6 +11,8 @@ class View {
    }
 
    public function render($data) {
+       if (!$this->template) return false;
+       
        $nav = __DIR__ . '/..'  . $this->template[0];
        $content =  __DIR__ . '/..'  . $this->template[2];
        $footer =  __DIR__ . '/..'  . $this->template[1];

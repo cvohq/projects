@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Classes\\Config' => $baseDir . '/src/Classes/Config.php',
     'Classes\\Mysql' => $baseDir . '/src/Classes/Mysql.php',
+    'Classes\\Routes' => $baseDir . '/src/Classes/Routes.php',
     'Controllers\\Controller' => $baseDir . '/src/Controllers/Controller.php',
     'Controllers\\Week3Controller' => $baseDir . '/src/Controllers/Week3Controller.php',
     'Controllers\\Week4Controller' => $baseDir . '/src/Controllers/Week4Controller.php',

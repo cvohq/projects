@@ -1,18 +1,19 @@
 <?php
 
+namespace Classes;
+
 class Routes {
     public $routes = [
-        'week3' => 'Controllers\Week3Controller',
-        'week4' => 'Controllers\Week4Controller',
-        'week5' => 'Controllers\Week5Controller'
+        'week3' => '\Controllers\Week3Controller',
+        'week4' => '\Controllers\Week4Controller',
+        'week5' => '\Controllers\Week5Controller'
     ];
     
     public $requestPath = [];
     
     public function __construct($requestPath = []) {
         
-        if(empty($requestPath))
-        {
+        if(empty($requestPath)) {
             echo 'Page not found';
         }
         
@@ -21,8 +22,12 @@ class Routes {
     
     public function getController() {
         
-        if (isset($this->routes[$this->requestPath[1]])) {
-            return new $this->routes[$this->requestPath[1]]($this->requestPath);
+        $className = $this->routes[$this->requestPath[1]];        
+        if (isset($className)) {  
+            
+            $controller = new $className;
+            $controller->setParams($this->requestPath);
+            return new $className;
         } else {
             echo 'Page not found';
             // Return a 404 controller            

@@ -5,7 +5,7 @@ namespace Models;
 class Model {
 
    public $data = [];
-
+   
    public function getData() {
        return $this->data;
    }

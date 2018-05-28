@@ -3,26 +3,35 @@
 namespace Controllers;
 
 class Controller {
+    
+    public $params;
 
-   public $model;
-   public $template;
-   public $view;
+    public $model;
+    public $template;
+    public $view;
 
-   public function __construct() {
-       // Constructor for the parent class
-   }
+    public function __construct() {
+        $this->model = new \Models\Model();
+        $this->template = [];
+        $this->view = new \Views\View($this->template);
+    }
 
-   public function getTemplate() {
-       return $this->template;
-   }
+    public function setParams($params) {
+        $this->params = $params;
+    }
 
-   public function getModel() {
-       return $this->model;
-   }
+    public function getTemplate() {
+        return $this->template;
+    }
 
-   public function getView() {
-       return $this->view;
-   }
+    public function getModel() {
+        return $this->model;
+    }
+
+    public function getView() {
+        return $this->view;
+    }
+
 }
 
 ?>
