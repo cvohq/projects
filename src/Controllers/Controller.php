@@ -11,6 +11,7 @@ class Controller {
     public $view;
 
     public function __construct() {
+        // Setting defaults
         $this->model = new \Models\Model();
         $this->template = [];
         $this->view = new \Views\View($this->template);
