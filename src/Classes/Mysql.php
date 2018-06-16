@@ -5,7 +5,20 @@ use \PDO as PDO;
 
 class Mysql {
     private static $db_dev;
+    private static $pdo;
     
+    /**
+     * 
+     * @return type
+     */
+    public static function getConnection() {
+        if (!self::$pdo) {
+            self::connect_db();
+        }
+        
+        return self::$pdo;
+    }
+
     private static function get_config()
     {
         //Connection configuration
@@ -25,16 +38,17 @@ class Mysql {
         static::get_config();
         
         try {
-            $pdo = new PDO("mysql:host=" . static::$db_dev['host'] . ";dbname=" . static::$db_dev['dbname'],static::$db_dev['user'], static::$db_dev['password']);
-            
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            echo 'Connect successfully. Host info: '. $pdo->getAttribute(constant("PDO::ATTR_CONNECTION_STATUS"));
+            static::$pdo = new PDO("mysql:host=" . static::$db_dev['host'] . ";dbname=" . static::$db_dev['dbname'],static::$db_dev['user'], static::$db_dev['password']);
+            static::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+           
         } catch (PDOException $ex) {
-            die("Error: Could no connect. " . $ex->getMessage());
+            die("Error: Could not connect. " . $ex->getMessage());
         }
-       
-
-        unset($pdo);
     }
+    
+    public static function disconnect_db()
+    {
+        static::$pdo = NULL;
+    }
+
 }

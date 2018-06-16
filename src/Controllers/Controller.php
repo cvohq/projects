@@ -3,8 +3,6 @@
 namespace Controllers;
 
 class Controller {
-    
-    public $params;
 
     public $model;
     public $template;
@@ -12,13 +10,11 @@ class Controller {
 
     public function __construct() {
         // Setting defaults
-        $this->model = new \Models\Model();
-        $this->template = [];
-        $this->view = new \Views\View($this->template);
-    }
-
-    public function setParams($params) {
-        $this->params = $params;
+        $this->template = [
+            '/Templates/Nav.template.php',
+            '/Templates/Footer.template.php'  
+                ];
+        //$this->view = new \Views\View($this->template);*/
     }
 
     public function getTemplate() {

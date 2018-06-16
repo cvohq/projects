@@ -9,20 +9,34 @@ namespace Controllers;
  */
 class Week4Controller extends Controller{
     
-    public function __construct() {
-       
+    public function __construct($requestPath = []) {
+        
+        parent::__construct();
+        
         $this->model = new \Models\Week4Model();
         
-        $this->template = [
-            '/Templates/Nav.template.php',
-            '/Templates/Footer.template.php'  
-                ];
+        if($requestPath[2] === 'PythagoreanTriple')
+        {
+            $this->PythagoreanTriple();
+        }
+        elseif($requestPath[2] === '20x20')
+        {
+            $this->greatestproduct20x20();
+        }
+        elseif ($requestPath[2] === 'CollatzProblem') {
+            $this->LongestCountCollatzProblem();
+        }
+        else
+        {
+            $this->template[] = "/Templates/404.php";           
+        }
+        
+        $this->template[] = '/Templates/Week4.template.php';
         $this->view = new \Views\View($this->template);
     }
     
     public function PythagoreanTriple() {
         $this->template[] = '/Templates/pythagoreanTriple.php';
-        
     }
     
     private function readinput()
@@ -242,8 +256,7 @@ class Week4Controller extends Controller{
             }
            // echo '<br>';
         }
-        $this->template[] = '/Templates/Week4.template.php';
-        $this->view = new \Views\View($this->template);
+     
     }
     
     private function CountCollatzProblem($n,$count = 1) {
@@ -278,10 +291,8 @@ class Week4Controller extends Controller{
             }
             
         }
-        $this->model->addvalue('CountCollatzProblem');
-        $this->model->addvalue($x);
-        $this->model->addvalue($count);
-        $this->template[] = '/Templates/Week4.template.php';
-        $this->view = new \Views\View($this->template);
+        $this->model->addData('CountCollatzProblem');
+        $this->model->addData($x);
+        $this->model->addData($count);
     }
 }

@@ -7,7 +7,8 @@ $controller = $routes->getController();
 
 $model = $controller->getModel();
 $data = $model->getData();
+$title = $model->getTitle();
 $view = $controller->getView();
 
-echo $view->render($data);
+echo $view->render($data,$title);
 ?>

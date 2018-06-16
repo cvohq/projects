@@ -5,6 +5,7 @@ namespace Controllers;
 class Week3Controller extends Controller {
  
     public function __construct($requestPath = []) {
+        parent::__construct();
         $this->model = new \Models\Week3Model();
         
         if($requestPath[2] === 'math')
@@ -38,18 +39,11 @@ class Week3Controller extends Controller {
         }
         else
         {
-            //echo 'Page not found';
-            $this->model->addData('Page not found');
-            
+            $this->template[] = "/Templates/404.php";           
         }
+   
+        $this->template[] = '/Templates/Week3.Math.template.php';
         
-        
-        
-        $this->template = [
-            '/Templates/Nav.template.php',
-            '/Templates/Footer.template.php',
-            '/Templates/Week3.Math.template.php'
-                ];
         $this->view = new \Views\View($this->template);
     }
     

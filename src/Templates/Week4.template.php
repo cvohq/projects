@@ -1,3 +1,4 @@
+<h2><?= $data[0] ?></h2>
 <?php
 
 if($data[1] == 'CountCollatzProblem')

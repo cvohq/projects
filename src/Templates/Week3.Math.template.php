@@ -1,3 +1,4 @@
+<h2><?= $data[0] ?></h2>
 <?php 
     if($data[1] === 'add')
     {
@@ -27,7 +28,7 @@
     {
         echo 'The adjacent digits: ' . $data[2] . ' have the greatest product are: ' .$data[3];
     }
-    else {
+    /*else {
         echo '<font size="5" color="red">'. $data[1] .'</font>';
-    }
+    }*/
 ?>

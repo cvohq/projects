@@ -35,10 +35,10 @@ and open the template in the editor.
                             Math
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../math/add?a=12&b=45&c=30">add</a>
-                            <a class="dropdown-item" href="../math/subtract?a=12&b=45&c=30">Subtract</a>
-                            <a class="dropdown-item" href="../math/multiply?a=12&b=45&c=30">Multiply</a>
-                            <a class="dropdown-item" href="../math/divide?a=12&b=45&c=30">Divide</a>
+                            <a class="dropdown-item" href="/week3/math/add?a=12&b=45&c=30">add</a>
+                            <a class="dropdown-item" href="/week3/math/subtract?a=12&b=45&c=30">Subtract</a>
+                            <a class="dropdown-item" href="/week3/math/multiply?a=12&b=45&c=30">Multiply</a>
+                            <a class="dropdown-item" href="/week3/math/divide?a=12&b=45&c=30">Divide</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -52,9 +52,21 @@ and open the template in the editor.
                             
                         </div>
                     </li>
+                    
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Week 6
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/week6/numberguessinggame">Number guessing game</a>
+                            <a class="dropdown-item" href="/week6/tictactoegame">Tic-tac-toe game</a>
+                            
+                            
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
         
         <div class="container">
-            <h2><?= $data[0] ?></h2>
+            
