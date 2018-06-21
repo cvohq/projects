@@ -72,10 +72,10 @@
 
 <table class="table borderless">
 	<tr>
-		<td><button id="h-h" class="btn btn-primary">Human - Human</button></td>
-		<td><button id="h-ce" class="btn btn-primary">Human - Computer(Easy)</button></td>
-		<td><button id="h-cm" class="btn btn-primary">Human - Computer(Medium)</button></td>
-		<td><button id="cm-cm" class="btn btn-primary">Computer(Medium) - Computer(Medium)</button></td>
+		<td><button value="0" id="h-h" class="btn btn-primary" onclick="leveluser(this)">Human - Human</button></td>
+		<td><button value="1" id="h-ce" class="btn btn-primary" onclick="leveluser(this)">Human - Computer(Easy)</button></td>
+		<td><button value="2" id="h-cm" class="btn btn-primary" onclick="leveluser(this)">Human - Computer(Medium)</button></td>
+		<!--<td><button value="3" id="cm-cm" class="btn btn-primary" onclick="leveluser(this)">Computer(Medium) - Computer(Medium)</button></td> !-->
 	</tr>
 
 </table>
@@ -141,6 +141,15 @@
         user1.classList.add('active');
     }
 
+    function leveluser(element)
+	{
+		list[1].level = element.value;
+		if(element.value == 3)
+		{
+			list[0].level = element.value;
+		}
+	}
+
     function showWinner(user)
     {
     	for (var i = 0; i < tds.length; i++) {
@@ -201,46 +210,289 @@
     	return 0;
     }
 
-    list[1].level = 1;
+    function computer_easy(user)
+    {
+    	var random = Math.floor(Math.random() * 9); 
+    	while(tds[random].innerHTML)
+    	{
+    		random = Math.floor(Math.random() * 9); 
+    	}
+
+    	tds[random].innerHTML = user.symbol;
+		tds[random].classList.add('hidden');
+    }
+
+    function checkalmostwin()
+    {
+    	var symbol;
+    	var cell;
+    	if(tds[0].innerHTML === tds[1].innerHTML && tds[0].innerHTML.length != 0 && tds[2].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[2]
+    		}
+    	}
+
+    	else if(tds[0].innerHTML === tds[2].innerHTML && tds[0].innerHTML.length != 0 && tds[1].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[1]
+    		}
+    	}
+
+    	else if(tds[1].innerHTML === tds[2].innerHTML && tds[1].innerHTML.length != 0 && tds[0].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[1].innerHTML,
+    			cell: tds[0]
+    		}
+    	}
+
+    	else if(tds[3].innerHTML === tds[4].innerHTML && tds[3].innerHTML.length != 0 && tds[5].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[3].innerHTML,
+    			cell: tds[5]
+    		}
+    	}
+
+    	else if(tds[3].innerHTML === tds[5].innerHTML && tds[3].innerHTML.length != 0 && tds[4].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[3].innerHTML,
+    			cell: tds[4]
+    		}
+    	}
+
+    	else if(tds[4].innerHTML === tds[5].innerHTML && tds[4].innerHTML.length != 0 && tds[3].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[4].innerHTML,
+    			cell: tds[3]
+    		}
+    	}
+
+    	else if(tds[6].innerHTML === tds[7].innerHTML && tds[6].innerHTML.length != 0 && tds[8].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[6].innerHTML,
+    			cell: tds[8]
+    		}
+    	}
+
+    	else if(tds[6].innerHTML === tds[8].innerHTML  && tds[6].innerHTML.length != 0 && tds[7].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[6].innerHTML,
+    			cell: tds[7]
+    		}
+    	}
+
+    	else if(tds[7].innerHTML === tds[8].innerHTML && tds[7].innerHTML.length != 0 && tds[6].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[7].innerHTML,
+    			cell: tds[6]
+    		}
+    	}
+
+    	else if(tds[0].innerHTML === tds[4].innerHTML && tds[0].innerHTML.length != 0 && tds[8].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[8]
+    		}
+    	}
+
+    	else if(tds[0].innerHTML === tds[8].innerHTML && tds[0].innerHTML.length != 0 && tds[4].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[4]
+    		}
+    	}
+
+    	else if(tds[4].innerHTML === tds[8].innerHTML && tds[4].innerHTML.length != 0 && tds[0].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[4].innerHTML,
+    			cell: tds[0]
+    		}
+    	}
+
+    	else if(tds[2].innerHTML === tds[4].innerHTML && tds[2].innerHTML.length != 0 && tds[6].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[2].innerHTML,
+    			cell: tds[6]
+    		}
+    	}
+
+    	else if(tds[2].innerHTML === tds[6].innerHTML && tds[2].innerHTML.length != 0 && tds[4].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[2].innerHTML,
+    			cell: tds[4]
+    		}
+    	}
+
+    	else if(tds[4].innerHTML === tds[6].innerHTML && tds[4].innerHTML.length != 0 && tds[2].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[4].innerHTML,
+    			cell: tds[2]
+    		}
+    	}
+
+    	else if(tds[0].innerHTML === tds[3].innerHTML && tds[0].innerHTML.length != 0 && tds[6].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[6]
+    		}
+    	}
+
+    	else if(tds[0].innerHTML === tds[6].innerHTML && tds[0].innerHTML.length != 0 && tds[3].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[0].innerHTML,
+    			cell: tds[3]
+    		}
+    	}
+
+    	else if(tds[3].innerHTML === tds[6].innerHTML && tds[3].innerHTML.length != 0 && tds[0].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[3].innerHTML,
+    			cell: tds[0]
+    		}
+    	}
+
+    	else if(tds[1].innerHTML === tds[4].innerHTML && tds[1].innerHTML.length != 0 && tds[7].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[1].innerHTML,
+    			cell: tds[7]
+    		}
+    	}
+
+    	else if(tds[1].innerHTML === tds[7].innerHTML && tds[1].innerHTML.length != 0 && tds[4].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[1].innerHTML,
+    			cell: tds[4]
+    		}
+    	}
+
+    	else if(tds[4].innerHTML === tds[7].innerHTML && tds[4].innerHTML.length != 0 && tds[1].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[4].innerHTML,
+    			cell: tds[1]
+    		}
+    	}
+
+    	else if(tds[2].innerHTML === tds[5].innerHTML && tds[2].innerHTML.length != 0 && tds[8].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[2].innerHTML,
+    			cell: tds[8]
+    		}
+    	}
+
+    	else if(tds[2].innerHTML === tds[8].innerHTML && tds[2].innerHTML.length != 0 && tds[5].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[2].innerHTML,
+    			cell: tds[5]
+    		}
+    	}
+
+    	else if(tds[5].innerHTML === tds[8].innerHTML && tds[5].innerHTML.length != 0 && tds[2].innerHTML.length == 0)
+    	{
+    		return {
+    			symbol: tds[5].innerHTML,
+    			cell: tds[2]
+    		}
+    	}
+    	else
+    	{
+    		var random = Math.floor(Math.random() * 9); 
+	    	while(tds[random].innerHTML)
+	    	{
+	    		random = Math.floor(Math.random() * 9); 
+	    	}
+	    	console.log(random);
+    		return {
+    			cell: tds[random]
+    		}
+    	}
+    }
+
+    function computer_medium(user)
+    {
+    	
+    	var check = checkalmostwin();
+    	check.cell.innerHTML = user.symbol;
+		check.cell.classList.add('hidden');
+    }
+
     function play(element)
     {
-        if(list[0].count == list[1].count)
-        {
-            element.innerHTML = list[0].symbol;
-            if(checkwin(list[0]) == 0)
-            {
-	            list[0].count += 1;
-	            element.classList.add('hidden');
-	            
-	            if(list[0].count < 5)
+    	if(list[0].level ==0)
+    	{
+	        if(list[0].count == list[1].count)
+	        {
+	            element.innerHTML = list[0].symbol;
+	            if(checkwin(list[0]) == 0)
 	            {
-	                    user1.classList.remove('active');
-	                    user2.classList.add('active');
+		            list[0].count += 1;
+		            element.classList.add('hidden');
+		            
+		            if(list[0].count < 5)
+		            {
+		                    user1.classList.remove('active');
+		                    user2.classList.add('active');
+		            }
+		            else {
+		                    user2.classList.remove('active');
+		                    user1.classList.remove('active');
+		            }
+	        	}
+
+	        	if(list[1].level ==0)
+	        	{
+	        		return;
+	        	}      	
+	        	
+	        }
+
+		    if(list[0].count > list[1].count) 
+		    {
+		    	if(list[1].level !=0)
+	        	{
+	        		if(list[1].level == 1)
+	        		{
+	        			computer_easy(list[1]);
+	        		}
+	        		if (list[1].level == 2) {
+	        			computer_medium(list[1]);
+	        		}
 	            }
 	            else {
-	                    user2.classList.remove('active');
-	                    user1.classList.remove('active');
-	            }
-        	}
-
-        	if(list[1].level !=0 &&list[0].level ==0)
-        	{
-        		console.log(list[1]);
-        		list[1].count += 1;
-            }
-       	
-        }
-        else 
-        {
-       		element.innerHTML = list[1].symbol;
-            if(checkwin(list[1]) == 0)
-            {
-	            list[1].count += 1;
-	            element.disabled=true;
-	            element.classList.add('hidden');
-	            user2.classList.remove('active');
-	            user1.classList.add('active');
-        	}
-       	}
-    }
+		   			element.innerHTML = list[1].symbol;
+		            element.classList.add('hidden');
+		   		}
+		        if(checkwin(list[1]) == 0)
+		        {
+		            list[1].count += 1;
+		            user2.classList.remove('active');
+		            user1.classList.add('active');
+		    	}
+		    	
+		   	}
+		}
+   	}
 </script>

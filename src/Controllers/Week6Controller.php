@@ -26,6 +26,10 @@ class Week6Controller extends Controller {
         elseif ($requestPath[2] === 'tictactoegame') {
             $this->tictactoegame();
         }
+        elseif ($requestPath[2] === 'ajax')  {
+            $this->ajax();
+        }
+        
         $this->view = new \Views\View($this->template);
     }
     
@@ -35,5 +39,9 @@ class Week6Controller extends Controller {
     
     public function tictactoegame() {
         $this->template[] = '/Templates/Tic-tac-toe.php';
+    }
+    
+    public function ajax() {
+        $this->template[] = '/Templates/ajax.php';
     }
 }

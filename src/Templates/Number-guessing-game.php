@@ -16,17 +16,24 @@ Please insert number (1-100):<br>
     var input = document.getElementById('input');
     var p = document.querySelector('p');
     var jackspot = Math.floor(Math.random() * 101) + 1;
-   
-    button.onclick = function() {
-    	if(input.value < jackspot) {
-      	p.innerHTML = "less than jackspot";
+
+    function check(){
+      
+      if(input.value < jackspot) {
+        p.innerHTML = "less than jackspot";
       }
       else if(input.value > jackspot) {
-      	p.innerHTML = "great than jackspot";
+        p.innerHTML = "great than jackspot";
       }
       else {
-      	p.innerHTML = "You are winner. The jackspot is: " + jackspot;
+        p.innerHTML = "You are winner. The jackspot is: " + jackspot;
       }
     }
+
+    button.onclick = check();
+    input.addEventListener('input', function()
+    {
+        check();
+    });
     
 </script>
