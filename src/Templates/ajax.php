@@ -1,44 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset="utf-8">
-	
-</head>
-<body>
-    <div id="result">
+<style type="text/css">
+    .disable {
+            pointer-events : none;
+	}
+    .enable {
+            pointer-events: auto;
+        }
+</style>
 
-    </div>
-    <button name="ajaxButton" id="ajaxButton">Click me</button>
+    <input type="number" id="txt" min="1">
+    <button type="submit" name="ajaxButton" id="ajaxButton">Click</button>
 
-
+    <p id="data-user"></p>
     <script type="text/javascript">
         var httpRequest;
-        document.getElementById("ajaxButton").addEventListener('click', makeRequest);
-
+        var btn = document.getElementById("ajaxButton");
+        var txt = document.getElementById("txt");
+        var data_user = document.getElementById("data-user");
+        
+        txt.addEventListener('input', function()
+        {
+            if(txt.value == 0)
+            {
+                btn.classList.add('disable');
+            }
+            else
+            {
+                btn.classList.add('enable');
+                btn.classList.remove('disable');
+            }
+        });
+        
+        btn.addEventListener('click', makeRequest);
+        
         function makeRequest() {
             httpRequest = new XMLHttpRequest();
 
             if (!httpRequest) {
-              alert('Giving up :( Cannot create an XMLHTTP instance');
+              alert('Cannot create an XMLHTTP instance');
               return false;
             }
+            httpRequest.open('GET', '/api/user/' + txt.value);
             httpRequest.onreadystatechange = successFunction;
-            httpRequest.open('GET', '/test.php');
+            
             httpRequest.send();
+            
         }
 
         function successFunction() {
             if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    alert(httpRequest.responseText);
-                } else {
-                    alert('There was a problem with the request.');
-                }
+                var data = JSON.parse(httpRequest.responseText);
+                var htmlstring = "Status: " +data.status +"<br>" +
+                                "ID: " + data.id + "<br>" +
+                                "Name: " +data.name + "<br>" +
+                                "Email: " + data.email + "<br>" +
+                                "Created: " +data.created;
+                data_user.insertAdjacentHTML('beforeend', htmlstring);
             }
         }
 
     </script>
-</body>
-</html>
+
 

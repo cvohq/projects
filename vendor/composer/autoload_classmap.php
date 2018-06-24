@@ -10,6 +10,7 @@ return array(
     'Classes\\Mysql' => $baseDir . '/src/Classes/Mysql.php',
     'Classes\\Routes' => $baseDir . '/src/Classes/Routes.php',
     'Classes\\User' => $baseDir . '/src/Classes/User.php',
+    'Controllers\\ApiController' => $baseDir . '/src/Controllers/ApiController.php',
     'Controllers\\Controller' => $baseDir . '/src/Controllers/Controller.php',
     'Controllers\\ErrorController' => $baseDir . '/src/Controllers/ErrorController.php',
     'Controllers\\User_Controller' => $baseDir . '/src/Controllers/User_Controller.php',

@@ -106,5 +106,32 @@ class User {
         return $users;
     }
     
-    public static function get_user_
+    public static function get_user_byID($id_user)
+    {
+        try {
+            $sql ="SELECT * FROM users WHERE id_user = :id_user";
+            $stmt = \Classes\Mysql::getConnection()->prepare($sql);
+            $stmt->bindParam(':id_user', $id_user, \PDO::PARAM_INT);
+            
+            $stmt->execute();
+            $result = $stmt->fetch();
+            
+            if($stmt->rowCount()==1){
+                $user = new User;
+                $user->setID($result['id_user']);
+                $user->setName($result['user_name']);
+                $user->setEmail($result['email']);
+                $user->setCreated($result['created']);
+                unset($stmt);
+            }
+            else {
+                echo "No records matching your query were found.";
+                return 0;
+            }
+            
+        } catch (PDOException $ex) {
+            die("ERROR: Could not prepare/execute query: $sql. " . $ex->getMessage());
+        }
+        return $user;
+    }
 }

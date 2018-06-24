@@ -19,7 +19,7 @@
 	}
 
 	.hidden {
-    	pointer-events : none;
+            pointer-events : none;
 	}
 	
 	.active {

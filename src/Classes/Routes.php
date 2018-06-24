@@ -7,7 +7,8 @@ class Routes {
         'week3' => '\Controllers\Week3Controller',
         'week4' => '\Controllers\Week4Controller',
         'week5' => '\Controllers\Week5Controller',
-        'week6' => '\Controllers\Week6Controller'
+        'week6' => '\Controllers\Week6Controller',
+        'api'   => '\Controllers\ApiController'
     ];
     
     public $requestPath = [];
